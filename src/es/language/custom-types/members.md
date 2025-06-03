@@ -334,3 +334,48 @@ impl Point {
     pub fn set_y(self, val: i32) -> Self { Self::new(self.x, val) }
 }
 ```
+
+En C#, `with` también puede usarse con una `struct` regular (a diferencia de una 
+`record`) que expone públicamente sus campos de lectura y escritura:
+
+```c#
+struct Point
+{
+    public int X;
+    public int Y;
+
+    public override string ToString() => $"({X}, {Y})";
+}
+
+var pt = new Point { X = 123, Y = 456 };
+Console.WriteLine(pt.ToString()); // Muestra: (123, 456)
+pt = pt with { X = 789 };
+Console.WriteLine(pt.ToString()); // Muestra: (789, 456)
+```
+
+Rust tiene una _[sintaxis de actualización][struct update syntax]_ de estructura
+que puede parecer similar:
+
+```rust
+mod points {
+    #[derive(Debug)]
+    pub struct Point { pub x: i32, pub y: i32 }
+}
+
+fn main() {
+    use points::Point;
+    let pt = Point { x: 123, y: 456 };
+    println!("{pt:?}"); // Muestra: Point { x: 123, y: 456 }
+    let pt = Point { x: 789, ..pt };
+    println!("{pt:?}"); // Muestra: Point { x: 789, y: 456 }
+}
+```
+
+Sin embargo, mientras que `with` en C# realiza una mutación no destructiva 
+(copia y luego actualiza), la 
+[sintaxis de actualización de estructuras][struct update syntax] en Rust 
+realiza _movimientos_ (parciales) y solo funciona con campos. Dado que esta 
+sintaxis requiere acceso a los campos del tipo, generalmente es más común usarla 
+dentro del módulo de Rust que tiene acceso a los detalles privados de sus tipos.
+
+  [struct update syntax]: https://doc.rust-lang.org/stable/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax

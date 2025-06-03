@@ -1,7 +1,7 @@
 # Nulabilidad y Opcionalidad
 
-En C#, `null` es a veces usado para representar un valor que es faltante, ausente
-o lógicamente no inicializado. Por ejemplo:
+En C#, `null` es a veces usado para representar un valor que es faltante, 
+ausente o lógicamente no inicializado. Por ejemplo:
 
 ```csharp
 int? some = 1;
@@ -37,7 +37,15 @@ if (max is { } someMax)
 
 Tu puedes usar pattern matching para lograr el mismo comportamiento en Rust:
 
-Sería más conciso usar `if let`:
+```rust
+let max = Some(10u32);
+match max {
+    Some(max) => println!("The maximum is {}.", max), // The maximum is 10.
+    None => ()
+}
+```
+
+Sería aún más conciso usar `if let`:
 
 ```rust
 let max = Some(10u32);
@@ -49,8 +57,8 @@ if let Some(max) = max {
 ## Operadores de Condición Nula
 
 Los operadores null-condicionales (`?.` y `?[]`) facilitan el manejo de null en 
-C#. En Rust, es mejor reemplazarlos usando el método [`map`][optmap]. El siguiente
-fragmento muestra la comparación:
+C#. En Rust, es mejor reemplazarlos usando el método [`map`][optmap]. El 
+siguiente fragmento muestra la comparación:
 
 ```csharp
 string? some = "Hola, Mundo!";

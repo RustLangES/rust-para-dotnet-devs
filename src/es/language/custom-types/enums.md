@@ -81,7 +81,7 @@ proporcionar una función auxiliar de este tipo:
 
 ```rust
 impl DayOfWeek {
-    fn from_i32(n: i32) -> Result<DayOfWeek, i32> {
+    fn try_from_i32(n: i32) -> Result<DayOfWeek, i32> {
         use DayOfWeek::*;
         match n {
             0 => Ok(Sunday),
@@ -97,15 +97,15 @@ impl DayOfWeek {
 }
 ```
 
-La función `from_i32` devuelve un `DayOfWeek` en un `Result` indicando éxito 
+La función `try_from_i32` devuelve un `DayOfWeek` en un `Result` indicando éxito 
 (`Ok`) si `n` es válido. De lo contrario, devuelve `n` tal cual en un `Result` 
 que indica fallo (`Err`):
 
 ```rust
-let dow = DayOfWeek::from_i32(5);
+let dow = DayOfWeek::try_from_i32(5);
 println!("{dow:?}"); // prints: Ok(Friday)
 
-let dow = DayOfWeek::from_i32(50);
+let dow = DayOfWeek::try_from_i32(50);
 println!("{dow:?}"); // prints: Err(50)
 ```
 

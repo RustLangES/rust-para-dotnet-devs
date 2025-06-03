@@ -36,6 +36,14 @@ if (max is { } someMax)
 
 You can use pattern matching to achieve the same behavior in Rust:
 
+```rust
+let max = Some(10u32);
+match max {
+    Some(max) => println!("The maximum is {}.", max), // The maximum is 10.
+    None => ()
+}
+```
+
 It would even be more concise to use `if let`:
 
 ```rust

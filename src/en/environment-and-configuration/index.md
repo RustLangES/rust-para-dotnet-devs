@@ -18,11 +18,11 @@ else
     Console.WriteLine($"Variable '{name}' set to '{value}'.");
 ```
 
-Rust is providing the same functionality of accessing an environment variable at
+Rust provides the same environment variable access functionality at
 runtime via the `var` and `var_os` functions from the `std::env` module.
 
-`var` function is returning a `Result<String, VarError>`, either returning the
-variable if set or returning an error if the variable is not set or it is not
+The `var` function will return a `Result<String, VarError>`, and either returns the
+variable if it is set or returns an error if the variable is either not set or is not
 valid Unicode.
 
 `var_os` has a different signature giving back an `Option<OsString>`, either
@@ -54,7 +54,7 @@ fn main() {
 }
 ```
 
-Rust is also providing the functionality of accessing an environment variable at
+Rust also provides environment variable access functionality at
 compile time. The `env!` macro from `std::env` expands the value of the variable
 at compile time, returning a `&'static str`. If the variable is not set, an
 error is emitted.
@@ -68,15 +68,15 @@ fn main() {
 }
 ```
 
-In .NET a compile time access to environment variables can be achieved, in a
+In .NET compile time access to environment variables can be achieved, albeit in a
 less straightforward way, via [source generators][source-gen].
 
 [source-gen]: https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview
 
 ## Configuration
 
-Configuration in .NET is possible with configuration providers. The framework is
-providing several provider implementations via
+Configuration in .NET is possible with configuration providers. The framework
+provides several provider implementations via
 `Microsoft.Extensions.Configuration` namespace and NuGet packages.
 
 Configuration providers read configuration data from key-value pairs using
@@ -100,7 +100,7 @@ class Example {
 }
 ```
 
-Other providers examples can be found in the official documentation
+Other provider examples can be found in the official documentation
 [Configurations provider in .NET][conf-net].
 
 A similar configuration experience in Rust is available via use of third-party
