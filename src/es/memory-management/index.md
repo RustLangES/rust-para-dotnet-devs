@@ -27,7 +27,7 @@ código con un error de compilación.
   [ownership]: https://book.rustlang-es.org/ch04-01-what-is-ownership
 
 En .NET, no existe el concepto de ownership de la memoria más allá de las raíces 
-del Gargabe Collector (campos estáticos, variables locales en la pila de un hilo, 
+del Garbage Collector (campos estáticos, variables locales en la pila de un hilo, 
 registros de la CPU, manejadores, etc.). Es el GC quien recorre desde las raíces 
 durante una recolección para determinar toda la memoria en uso siguiendo las 
 referencias y purgando el resto. Al diseñar tipos y escribir código, un 
